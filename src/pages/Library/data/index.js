@@ -14,6 +14,24 @@ const tableData = [
         thoiluong: 'abc',
         socau: 'abcabc',
     },
+    {
+        ten: 'halo',
+        thoigiantao: 'abc',
+        thoiluong: 'abc',
+        socau: 'abcabc',
+    },
+    {
+        ten: 'halo',
+        thoigiantao: 'abc',
+        thoiluong: 'abc',
+        socau: 'abcabc',
+    },
+    {
+        ten: 'halo',
+        thoigiantao: 'abc',
+        thoiluong: 'abc',
+        socau: 'abcabc',
+    },
 ]
 
 export {header, colums, tableData};

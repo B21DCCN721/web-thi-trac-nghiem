@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Button from "../../Button";
 
 // tên của columns phải trùng với các key của các item trong data
-function TableLibrary({header, data, columns}) {
+function TableLibrary({header, data, columns, handleClickDelete, handleClickEdit}) {
     return ( 
         <div className="mx-5 my-5">
             <table className="w-full table-auto text-center border rounded-lg divide-y divide-solid shadow-md">
@@ -22,10 +22,10 @@ function TableLibrary({header, data, columns}) {
                                 <td key={index} className="py-3">{item[column]}</td>
                             ))}
                             <td>
-                                <Button>Chỉnh sửa</Button>
+                                <Button onClick={handleClickEdit}>Chỉnh sửa</Button>
                             </td>
                             <td>
-                                <Button>Xóa</Button>
+                                <Button onClick={handleClickDelete}>Xóa</Button>
                             </td>
                         </tr>
                     ))}
@@ -40,6 +40,8 @@ TableLibrary.propTypes = {
     header: PropTypes.array,
     data: PropTypes.array,
     columns: PropTypes.array,
+    handleClickDelete: PropTypes.func,
+    handleClickEdit: PropTypes.func,
 }
 
 export default TableLibrary;

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Button from "../../Button";
 
 // tên của columns phải trùng với các key của các item trong data
-function TableResult({header, data, columns}) {
+function TableResult({header, data, columns, handleClickDetail}) {
     return ( 
         <div className="mx-5 my-5">
             <table className="w-full table-auto text-center border rounded-lg divide-y divide-solid shadow-md">
@@ -21,7 +21,7 @@ function TableResult({header, data, columns}) {
                                 <td key={index} className="py-3">{item[column]}</td>
                             ))}
                             <td>
-                                <Button>Xem chi tiết</Button>
+                                <Button onClick={() => handleClickDetail(item.id)}>Xem chi tiết</Button>
                             </td>
                         </tr>
                     ))}
@@ -36,6 +36,7 @@ TableResult.propTypes = {
     header: PropTypes.array,
     data: PropTypes.array,
     columns: PropTypes.array,
+    handleClickDetail: PropTypes.func,
 }
 
 export default TableResult;

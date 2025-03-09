@@ -24,11 +24,11 @@ function Header() {
 
         {/* Menu thả xuống dùng group của tailwind để đánh dấu các element giúp điều khiển trạng thái của phần tử con dựa trên trạng thái của phần tử cha */}
         <div className="absolute z-50 top-10 right-30 bg-white border border-slate-300 shadow-md rounded-md hidden group-hover:block">
-          <Link to="#" className="block px-4 py-2 hover:bg-slate-100">
+          <Link to="/profile" className="block px-4 py-2 hover:bg-slate-100">
             <FontAwesomeIcon icon={faUser} className="mr-2" />
             Profile
           </Link>
-          <Link to="#" className="block px-4 py-2 hover:bg-slate-100">
+          <Link to="/" className="block px-4 py-2 hover:bg-slate-100">
             <FontAwesomeIcon icon={faArrowRightFromBracket} className="mr-2" />
             Logout
           </Link>

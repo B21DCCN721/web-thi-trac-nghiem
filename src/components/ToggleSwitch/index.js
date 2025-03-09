@@ -20,7 +20,7 @@ const ToggleSwitch = ({ onChange }) => {
           onChange={handleToggle}
         />
         <div
-          className="w-12 h-7 min-w-12 min-h-7  bg-gray-300 relative peer-focus:outline-none rounded-full 
+          className="min-w-12 min-h-7 bg-gray-300 relative peer-focus:outline-none rounded-full 
                      peer peer-checked:after:translate-x-5 peer-checked:after:border-white 
                      after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white 
                      after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 

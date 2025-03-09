@@ -8,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Sidebar() {
-  console.log("re-render");
 
   return (
     <div className="sidebar w-64 min-h-screen flex flex-col">

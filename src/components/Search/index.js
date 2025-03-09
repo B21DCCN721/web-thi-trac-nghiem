@@ -4,7 +4,7 @@ function Search() {
   return (
     <div>
       <form className="search-container">
-        <label htmlFor="search" className="mx-5">
+        <label htmlFor="search" className="mx-5 text-md text-gray-500">
           Tìm kiếm:
         </label>
         <input

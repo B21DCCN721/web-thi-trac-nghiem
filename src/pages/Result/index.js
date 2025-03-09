@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import DefaultLayout from "../../Layouts/DefaultLayout";
 import Pagination from "../../components/Pagination";
 import { TableResult } from "../../components/Table";
@@ -8,10 +9,14 @@ function Result() {
     useEffect(() => {
         document.title="Result"
     },[])
+    const navigate = useNavigate()
+    const handleClickDetail = (id) => {
+        navigate(`/ketqua/${id}`)
+    }
     return ( 
         <DefaultLayout>
             <h1 className="text-2xl text-gray-500 font-bold ml-5 mt-5">Danh sách bài thi</h1>
-            <TableResult header={header} columns={colums} data={tableData}/>
+            <TableResult header={header} columns={colums} data={tableData} handleClickDetail={handleClickDetail}/>
             <Pagination totalItems={50} itemsPerPage={5} onPageChange={(page) => console.log('Current page:', page)} />
         </DefaultLayout>
      );

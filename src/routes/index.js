@@ -1,7 +1,7 @@
 import Login from "../pages/Login";
 import Home from "../pages/Home";
 import Result from "../pages/Result";
-import Library from "../pages/Library";
+// import Library from "../pages/Library";
 import CreateAccout from "../pages/CreateAccout";
 import DetailTest from "../pages/DetailTest";
 import Profile from "../pages/Profile";
@@ -17,18 +17,21 @@ const publicRoutes = [
     path: "/dangky",
     component: CreateAccout,
   },
+];
+
+const privateRoutes = [
   {
     path: "/home",
     component: Home,
   },
   {
-    path: "/home/chitietbaithi",
+    path: "/home/chitietbaithi/:id",
     component: DetailTest,
   },
-  {
-    path: "/thuvien",
-    component: Library,
-  },
+  // {
+  //   path: "/thuvien",
+  //   component: Library,
+  // },
   {
     path: "/ketqua",
     component: Result,
@@ -46,7 +49,5 @@ const publicRoutes = [
     component: ResultTest,
   },
 ];
-
-const privateRoutes = [];
 
 export { publicRoutes, privateRoutes };

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
+import formatDate from "../../../helpers/fomatDate";
 
-// tên của columns phải trùng với các key của các item trong data
-function TableResultTest({ data }) {
+function TableResultTest({ dataHistory, dataUser }) {
   return (
     <div className="mx-5 my-5">
       <table className="w-full table-auto text-center border rounded-lg divide-y divide-solid shadow-md">
@@ -20,27 +20,27 @@ function TableResultTest({ data }) {
             <td>
               <div className="grid grid-cols-3 ml-2">
                 <span>Tên:</span>
-                <span className="col-span-2">{data.ten}</span>
+                <span className="col-span-2">{dataUser.username}</span>
               </div>
             </td>
             <td>
               <div className="grid grid-cols-3 ml-2">
-                <span>Thời gian làm bài:</span>
-                <span className="col-span-2">{data.thoigianlambai}</span>
+                <span>Tên bài thi:</span>
+                <span className="col-span-2">{dataHistory.test.title}</span>
               </div>
             </td>
           </tr>
           <tr className="*:py-3 text-left bg-gray-300">
             <td>
               <div className="grid grid-cols-3 ml-2">
-                <span>Mã sinh viên:</span>
-                <span className="col-span-2">{data.msv}</span>
+                <span>Mô tả:</span>
+                <span className="col-span-2">{dataUser.description}</span>
               </div>
             </td>
             <td>
               <div className="grid grid-cols-3 ml-2">
                 <span>Thời gian nộp bài:</span>
-                <span className="col-span-2">{data.thoigiannopbai}</span>
+                <span className="col-span-2">{formatDate(dataHistory.completed_at)}</span>
               </div>
             </td>
           </tr>
@@ -48,13 +48,13 @@ function TableResultTest({ data }) {
             <td>
               <div className="grid grid-cols-3 ml-2">
                 <span>Lớp:</span>
-                <span className="col-span-2">{data.lop}</span>
+                <span className="col-span-2">{dataUser.class}</span>
               </div>
             </td>
             <td>
               <div className="grid grid-cols-3 ml-2">
                 <span>Điểm:</span>
-                <span className="col-span-2">{data.diem}</span>
+                <span className="col-span-2">{dataHistory.score}</span>
               </div>
             </td>
           </tr>
@@ -65,7 +65,8 @@ function TableResultTest({ data }) {
 }
 
 TableResultTest.propTypes = {
-  data: PropTypes.object,
+  dataHistory: PropTypes.object,
+  dataUser: PropTypes.object,
 };
 
 export default TableResultTest;

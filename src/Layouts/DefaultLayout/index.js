@@ -6,9 +6,9 @@ function DefaultLayout({ children }) {
   return (
     <div className="container mx-0 min-h-screen flex">
       <Sidebar />
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col">
         <Header />
-        <div className="content">{children}</div>
+        <div className="content flex-1">{children}</div>
       </div>
     </div>
   );

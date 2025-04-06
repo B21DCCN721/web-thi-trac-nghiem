@@ -5,10 +5,10 @@ function ControlTest({handleExit, handleSubmit, handleScroll, data}) {
 
     return (  
         <div className="fixed top-28 right-10 rounded shadow-lg shadow-rose-100 bg-white w-1/6">
-            <p className="ml-5">Thời gian làm bài:</p>
+            <p className="ml-5 text-center">Chọn để chuyển câu</p>
            <div className="flex justify-center items-center flex-wrap">
                 {data.map((item, index) => (
-                    <Button key={index} sx="bg-white text-black border border-black hover:bg-rose-200" onClick={() => handleScroll(index)}>{index + 1}</Button>
+                    <Button key={index} sx="bg-white !text-black border border-black hover:bg-rose-200" onClick={() => handleScroll(index)}>{index + 1}</Button>
                 ))}
            </div>
             <div className="mx-5"><Button sx="w-full mx-0 font-bold" onClick={handleSubmit}>Nộp bài</Button></div>

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouse,
   faSquarePollVertical,
-  faBookOpen,
+  // faBookOpen,
 } from "@fortawesome/free-solid-svg-icons";
 
 function Sidebar() {
@@ -49,7 +49,7 @@ function Sidebar() {
           </NavLink>
         </li>
 
-        <li className="mx-1 mt-2.5">
+        {/* <li className="mx-1 mt-2.5">
           <NavLink
             to="/thuvien"
             className={({ isActive }) =>
@@ -64,7 +64,7 @@ function Sidebar() {
             />
             Thư viện
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

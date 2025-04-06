@@ -27,7 +27,7 @@ function Library() {
         <h1 className="text-2xl text-white bg-red-600 font-bold p-3 rounded-t-lg">
           <span className="ml-3">Danh sách bài thi đã làm</span>
         </h1>
-        <div className="flex mt-3">
+        <div className="flex mt-3 items-center">
           <Search />
           <Button>Tạo mới</Button>
         </div>

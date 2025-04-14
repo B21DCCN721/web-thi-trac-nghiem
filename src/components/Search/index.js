@@ -7,7 +7,7 @@ function Search({ onSearch }) {
           Tìm kiếm:
         </label>
         <input
-          className="p-2 w-[500px] border border-slate-400 rounded focus:outline-none"
+          className="p-2 w-[500px] border border-slate-400 rounded outline-blue-500"
           name="value"
           id="search"
           type="text"

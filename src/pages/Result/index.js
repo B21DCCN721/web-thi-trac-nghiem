@@ -11,12 +11,12 @@ function Result() {
   useEffect(() => {
     document.title = "Result";
   }, []);
-    const [limit] = useState(1);
+    const [limit] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
   const apiResultTests = useGetPaginationData(`/test/history?limit=${limit}&page=${currentPage}`);
   const navigate = useNavigate();
   const handleClickDetail = (id) => {
-    navigate(`/ketqua/${id}`);
+    navigate(`/result/${id}`);
   };
   if (apiResultTests.data === null || apiResultTests.loading === true) {
     return (
@@ -47,16 +47,16 @@ function Result() {
                   key={index}
                   className={`${index % 2 === 0 ? "bg-gray-200" : ""}`}
                 >
-                  <td key={index} className="py-3">
+                  <td className="py-3">
                     {item.Test.title}
                   </td>
-                  <td key={index} className="py-3">
+                  <td className="py-3">
                     {item.Test.description}
                   </td>
-                  <td key={index} className="py-3">
+                  <td className="py-3">
                     {formatDate(item.completed_at)}
                   </td>
-                  <td key={index} className="py-3">
+                  <td className="py-3">
                     {item.score}
                   </td>
     

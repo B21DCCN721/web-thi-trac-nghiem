@@ -1,16 +1,16 @@
 import { useState } from "react";
 import axiosClient from "../configs/axiosClient";
 
-const usePatchData = () => {
+const useDeletaData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
-  const patch = async (url, body) => {
+  const deleteData = async (url) => {
     setLoading(true);
-    setError(null);
+    setLoading(null);
     try {
-      const response = await axiosClient.patch(url, body);
+      const response = await axiosClient.delete(url);
       setData(response.data);
       setLoading(false);
       return response.data;
@@ -24,8 +24,8 @@ const usePatchData = () => {
     loading,
     error,
     data,
-    patch,
+    deleteData,
   };
 };
 
-export default usePatchData;
+export default useDeletaData;

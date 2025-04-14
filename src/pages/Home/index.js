@@ -9,7 +9,7 @@ import useGetPaginationData from "../../hooks/useGetPaginationData";
 import Loading from "../../components/Loading";
 
 function Home() {
-  const [limit] = useState(1);
+  const [limit] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const apiGetListTest = useGetPaginationData(
     `/test?limit=${limit}&page=${currentPage}`
@@ -19,7 +19,7 @@ function Home() {
   }, []);
   const navigate = useNavigate();
   const handleClickDetail = (id) => {
-    navigate(`/home/chitietbaithi/${id}`);
+    navigate(`/home/info-test/${id}`);
   };
   const handleClickStartTest = (id) => {
     navigate(`/test/${id}`);

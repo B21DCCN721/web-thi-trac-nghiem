@@ -8,7 +8,7 @@ import usePatchData from "../../hooks/usePatchData";
 
 function Profile() {
   const apiGetProfile = useGetData("/profile");
-  const apiPatchProfile = usePatchData("/update/profile");
+  const apiPatchProfile = usePatchData();
 
   const [name, setName] = useState("");
   const [lop, setLop] = useState("");
@@ -28,9 +28,9 @@ function Profile() {
   const handleClickEditInfo = () => {
     setCheckEdit(true);
   };
-  const handleConfim = (e) => {
+  const handleConfim = async (e) => {
     e.preventDefault();
-    apiPatchProfile.patch({
+    await apiPatchProfile.patch("/update/profile", {
       username: name,
       email,
       classUser: lop,

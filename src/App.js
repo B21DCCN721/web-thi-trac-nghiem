@@ -9,16 +9,35 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="*" element={<Navigate to="/" />} />
-
+          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* Public routes (Login, Register, Admin Login) */}
           {publicRoutes.map((route, index) => {
             const Page = route.component;
-            return <Route key={index} path={route.path} element={<PublicRoute element={Page} />} />;
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={<PublicRoute element={Page} />}
+              />
+            );
           })}
 
+          {/* Private routes (user & admin) */}
           {privateRoutes.map((route, index) => {
             const Page = route.component;
-            return <Route key={index} path={route.path} element={<PrivateRoute element={Page} />} />;
+            const requiredRole = route.path.startsWith("/admin") ? "admin" : "user";
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <PrivateRoute
+                    element={Page}
+                    requiredRole={requiredRole}
+                  />
+                }
+              />
+            );
           })}
         </Routes>
       </div>

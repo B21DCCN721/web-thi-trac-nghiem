@@ -6,20 +6,20 @@ import {
   faSquarePollVertical,
 } from "@fortawesome/free-solid-svg-icons";
 
-function DefaultLayout({ children }) {
+function AdminLayout({ children }) {
   return (
     <div className="container mx-0 min-h-screen flex">
       <Sidebar
         tabs={[
           {
-            title: "Danh sách bài thi",
+            title: "Thư viện bài thi",
             icon: faHouse,
-            path: "/home",
+            path: "/admin/library",
           },
           {
-            title: "Kết quả",
+            title: "Tạo mới bài thi",
             icon: faSquarePollVertical,
-            path: "/result",
+            path: "/admin/create-test",
           },
         ]}
       />
@@ -31,8 +31,8 @@ function DefaultLayout({ children }) {
   );
 }
 
-DefaultLayout.propTypes = {
+AdminLayout.propTypes = {
   children: PropTypes.node,
 };
 
-export default DefaultLayout;
+export default AdminLayout;

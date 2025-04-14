@@ -4,7 +4,7 @@ import axiosClient from "../configs/axiosClient";
 import { loginSuccess } from "../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
 
-const useLogin = (url) => {
+const useLogin = (url, path, role) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -15,8 +15,8 @@ const useLogin = (url) => {
       const response = await axiosClient.post(url, { username, password });
       if (response.status === 200) {
         const { token } = response.data;
-        dispatch(loginSuccess({ token, username }));
-        navigate("/home");
+        dispatch(loginSuccess({ token, username, role }));
+        navigate(path);
         setLoading(false);
       }
     } catch (err) {

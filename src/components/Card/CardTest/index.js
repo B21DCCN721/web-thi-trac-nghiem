@@ -14,7 +14,7 @@ function CardTest({ image, info, handleClickDetail, handleClickStartTest }) {
                 </div>
             </div>
             <div className="detail-info text-slate-600">
-                <p>Tác giả: {info.author}</p>
+                <p>Mã đề: {info.code}</p>
                 <p>Số câu: {info.quantity}</p>
                 <p>Số lượt làm: {info.attempts}</p>
             </div>

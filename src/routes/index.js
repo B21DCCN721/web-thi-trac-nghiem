@@ -1,16 +1,22 @@
-import Login from "../pages/Login";
-import Home from "../pages/Home";
-import Result from "../pages/Result";
-import CreateAccout from "../pages/CreateAccout";
-import DetailTest from "../pages/DetailTest";
-import Profile from "../pages/Profile";
-import TestStart from "../pages/TestStart";
-import DetailResult from "../pages/DetailResult";
+// pages user
+import Login from "../pages/user/Login";
+import Home from "../pages/user/Home";
+import Result from "../pages/user/Result";
+import CreateAccout from "../pages/user/CreateAccout";
+import DetailTest from "../pages/user/DetailTest";
+import Profile from "../pages/user/Profile";
+import StartTest from "../pages/user/StartTest";
+import DetailResult from "../pages/user/DetailResult";
+import ForgotPassword from "../pages/user/ForgotPassword";
+import Ranking from "../pages/user/Ranking";
+import ChangePassword from "../pages/user/ChangePassword";
 
-// component admin
+// pages admin
 import LoginAdmin from "../pages/admin/LoginAdmin";
 import LibraryAdmin from "../pages/admin/LibraryAdmin";
 import CreateTest from "../pages/admin/CreateTest";
+import EditTest from "../pages/admin/EditTest";
+import Statistical from "../pages/admin/Statistical";
 
 const publicRoutes = [
   {
@@ -22,13 +28,33 @@ const publicRoutes = [
     component: CreateAccout,
   },
   {
+    path: "/forgot-password",
+    component: ForgotPassword,
+  },
+  {
     path: "/admin",
     component: LoginAdmin,
+  },
+  // role admin
+  {
+    path: "/admin/library",
+    component: LibraryAdmin
+  },
+  {
+    path: "/admin/create-test",
+    component: CreateTest
+  },
+  {
+    path: "/admin/library/edit-test/:id",
+    component: EditTest
+  },
+  {
+    path: "/admin/statistical",
+    component: Statistical
   },
 ];
 
 const privateRoutes = [
-  //role user
   {
     path: "/home",
     component: Home,
@@ -47,21 +73,20 @@ const privateRoutes = [
   },
   {
     path: "/test/:id",
-    component: TestStart,
+    component: StartTest,
   },
   {
     path: "/result/:id",
     component: DetailResult,
   },
-  // role admin
   {
-    path: "/admin/library",
-    component: LibraryAdmin
+    path: "/ranking",
+    component: Ranking
   },
   {
-    path: "/admin/create-test",
-    component: CreateTest
-  }
+    path: "/change-password",
+    component: ChangePassword
+  },
 ];
 
 export { publicRoutes, privateRoutes };

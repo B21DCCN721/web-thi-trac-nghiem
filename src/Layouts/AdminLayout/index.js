@@ -2,8 +2,9 @@ import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import PropTypes from "prop-types";
 import {
-  faHouse,
+  faPlus,
   faSquarePollVertical,
+  faBook
 } from "@fortawesome/free-solid-svg-icons";
 
 function AdminLayout({ children }) {
@@ -12,19 +13,23 @@ function AdminLayout({ children }) {
       <Sidebar
         tabs={[
           {
-            title: "Thư viện bài thi",
-            icon: faHouse,
-            path: "/admin/library",
+            title: "Thống kê",
+            icon: faSquarePollVertical,
+            path: "/admin/statistical",
           },
           {
             title: "Tạo mới bài thi",
-            icon: faSquarePollVertical,
+            icon: faPlus,
             path: "/admin/create-test",
+          },
+          {
+            title: "Thư viện bài thi",
+            icon: faBook,
+            path: "/admin/library",
           },
         ]}
       />
-      <div className="flex-1 flex flex-col">
-        <Header />
+      <div className="flex-1 flex flex-col m-5">
         <div className="content flex-1">{children}</div>
       </div>
     </div>

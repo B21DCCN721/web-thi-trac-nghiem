@@ -115,7 +115,7 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
     return pages;
   };
   return (
-    <div className="flex justify-center items-center mt-4">
+    <div className="flex justify-center items-center mt-auto">
       <button
         onClick={() => handleClick(currentPage - 1)}
         disabled={currentPage === 1}

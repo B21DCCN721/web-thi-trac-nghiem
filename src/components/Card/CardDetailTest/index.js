@@ -18,10 +18,13 @@ function CardDetailTest({info}) {
     return ( 
         <div className="mx-5 mt-5 rounded-md shadow-lg *:m-5">
             <h1 className="font-bold text-xl">{info.title}</h1>
+            <p><span className="mr-3"><FontAwesomeIcon icon={faUser} /></span>Môn học: {info.subject}</p>
+            <p><span className="mr-3"><FontAwesomeIcon icon={faUser} /></span>Mã bài thi: {info.code}</p>
             <p><span className="mr-3"><FontAwesomeIcon icon={faClock} /></span>Thời gian làm tạo: {formatDate(info.created_at)}</p>
             <p><span className="mr-3"><FontAwesomeIcon icon={faUser} /></span>Tác giả: {info.author}</p>
             <p><span className="mr-3"><FontAwesomeIcon icon={faCircleQuestion} /></span>Số câu hỏi: {info.quantity}</p>
             <p><span className="mr-3"><FontAwesomeIcon icon={faUser} /></span>Số lượt làm: {info.attempts}</p>
+            <p><span className="mr-3"><FontAwesomeIcon icon={faUser} /></span>Mô tả: {info.description}</p>
             {/* <div>
                 <select 
                     value={selectedTime} 

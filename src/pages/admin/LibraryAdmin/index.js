@@ -1,13 +1,32 @@
-import AdminLayout from "../../../Layouts/AdminLayout";
+import AdminLayout from "../../../layouts/AdminLayout";
 import Search from "../../../components/Search";
 import Pagination from "../../../components/Pagination";
 import { useEffect, useState } from "react";
-import useGetPaginationData from "../../../hooks/useGetPaginationData";
 import Button from "../../../components/Button";
 import Dialog from "../../../components/Dialog";
 import formatDate from "../../../helpers/fomatDate";
-import Loading from "../../../components/Loading";
-import useDeletaData from "../../../hooks/useDeleteData";
+import { useNavigate } from "react-router-dom";
+
+const data = [
+  {
+    id: 1,
+    title: "Bài thi Toán học",
+    created_at: "2023-10-01T12:00:00Z",
+    quantity: 10,
+  },
+  {
+    id: 2,
+    title: "Bài thi Lịch sử",
+    created_at: "2023-10-02T12:00:00Z",
+    quantity: 8,
+  },
+  {
+    id: 3,
+    title: "Bài thi Vật lý",
+    created_at: "2023-10-03T12:00:00Z",
+    quantity: 12,
+  },
+];
 
 function LibraryAdmin() {
   useEffect(() => {
@@ -16,36 +35,31 @@ function LibraryAdmin() {
   const [limit] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [idTest, setIdTest] = useState(null);
-  const apiGetListTest = useGetPaginationData(
-    `/test?limit=${limit}&page=${currentPage}`
-  );
-  const apiDeleteTest = useDeletaData();
   const [showDialog, setShowDialog] = useState(false);
+  const navigate = useNavigate();
   const handleClickDelete = (id) => {
     setIdTest(id);
     setShowDialog(true);
   };
   const handleConfim = async () => {
-    await apiDeleteTest.deleteData(`/test/delete/${idTest}`);
     setShowDialog(false);
   };
   const handleClose = () => setShowDialog(false);
-  if (apiGetListTest.data === null || apiGetListTest.loading === true) {
-    return (
-      <AdminLayout>
-        <Loading />
-      </AdminLayout>
-    );
+  const handleClickEdit = (id) => {
+    // Navigate to edit page with the test ID
+    // Assuming you have a route set up for editing tests
+    navigate(`/admin/library/edit-test/${id}`);
+    console.log(`Edit test with ID: ${id}`);
   }
   return (
     <AdminLayout>
-      <div className="mx-5 my-5 border rounded-t-lg shadow-lg">
+      <div className="border rounded-t-lg shadow-lg">
         <h1 className="text-2xl text-white bg-red-600 font-bold p-3 rounded-t-lg">
           <span className="ml-3">Danh sách bài thi đã làm</span>
         </h1>
         <div className="flex mt-3 items-center">
           <Search />
-          <Button>Tạo mới</Button>
+          <Button onClick={() => {navigate("/admin/create-test")}}>Tạo mới</Button>
         </div>
         <div className="mx-5 my-5">
           <table className="w-full table-auto text-center border rounded-lg divide-y divide-solid shadow-md">
@@ -59,7 +73,7 @@ function LibraryAdmin() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-300">
-              {apiGetListTest.data.map((item, index) => (
+              {data.map((item, index) => (
                 <tr
                   key={index}
                   className={`${index % 2 === 0 ? "bg-gray-200" : ""}`}
@@ -68,7 +82,7 @@ function LibraryAdmin() {
                   <td className="py-3">{formatDate(item.created_at)}</td>
                   <td className="py-3">{item.quantity}</td>
                   <td>
-                    <Button>Chỉnh sửa</Button>
+                    <Button onClick={() => handleClickEdit(item.id)}>Chỉnh sửa</Button>
                   </td>
                   <td>
                     <Button onClick={() => handleClickDelete(item.id)}>Xóa</Button>
@@ -79,7 +93,7 @@ function LibraryAdmin() {
           </table>
         </div>
         <Pagination
-          totalItems={apiGetListTest.pagination.totalTests}
+          totalItems={10}
           itemsPerPage={limit}
           onPageChange={(page) => setCurrentPage(page)}
         />

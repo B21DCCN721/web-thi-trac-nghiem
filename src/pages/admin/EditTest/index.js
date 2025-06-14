@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AdminLayout from "../../../layouts/AdminLayout";
 
-export default function CreateTest() {
+export default function EditTest() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [questions, setQuestions] = useState([
@@ -30,19 +30,6 @@ export default function CreateTest() {
     setQuestions(newQuestions);
   };
 
-  const addQuestion = () => {
-    setQuestions([
-      ...questions,
-      { question: "", options: ["", "", "", ""], correctAnswer: null },
-    ]);
-  };
-
-  const removeQuestion = (index) => {
-    const newQuestions = [...questions];
-    newQuestions.splice(index, 1);
-    setQuestions(newQuestions);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -67,7 +54,7 @@ export default function CreateTest() {
     <AdminLayout>
       <div className="max-w-4xl mx-auto p-6 bg-white shadow-xl rounded-2xl mt-6">
         <h1 className="text-2xl font-bold mb-4 text-gray-700 text-center">
-          Tạo bài thi trắc nghiệm
+          Chỉnh sửa bài thi
         </h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -96,18 +83,6 @@ export default function CreateTest() {
               key={qIndex}
               className="relative border p-4 rounded-lg bg-gray-50 space-y-4"
             >
-              {/* Nút Xóa */}
-              {questions.length > 1 && (
-                <button
-                  type="button"
-                  onClick={() => removeQuestion(qIndex)}
-                  className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-                  title="Xóa câu hỏi"
-                >
-                  🗑
-                </button>
-              )}
-
               <div>
                 <label className="block font-medium">
                   Câu hỏi {qIndex + 1}
@@ -152,15 +127,6 @@ export default function CreateTest() {
               </div>
             </div>
           ))}
-
-          <button
-            type="button"
-            onClick={addQuestion}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-          >
-            + Thêm câu hỏi
-          </button>
-
           <button
             type="submit"
             className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition block mx-auto"

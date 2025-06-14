@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 */
 function Sidebar({tabs}) {
   return (
-    <div className="sidebar w-64 min-h-screen flex flex-col">
+    <div className="sidebar min-w-[256px] min-h-screen flex flex-col">
       <h3 className="sidebar-header border-r border-b border-slate-300 h-16 flex items-center justify-center font-bold hover:cursor-pointer">
         QUIZZ APP
       </h3>

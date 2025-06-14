@@ -1,15 +1,12 @@
 import { useState } from "react";
 import Button from "../../../components/Button";
-import useLogin from "../../../hooks/useLogin";
 
 function LoginAdmin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const apiLogin = useLogin("/admin/login", "/admin/library","admin");
 
   const handleLogin = (e) => {
     e.preventDefault();
-    apiLogin.login(username, password);
   };
 
   return (

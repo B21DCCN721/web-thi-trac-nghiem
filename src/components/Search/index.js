@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-function Search({ onSearch }) {
+function Search({ valueSearch = "", onSearch }) {
   return (
     <div>
       <form className="search-container">
@@ -12,6 +12,7 @@ function Search({ onSearch }) {
           id="search"
           type="text"
           placeholder="Nhập giá trị..."
+          value={valueSearch}
           onChange={onSearch}
         />
       </form>
@@ -20,6 +21,7 @@ function Search({ onSearch }) {
 }
 
 Search.propTypes = {
+  valueSearch: PropTypes.string,
   onSearch: PropTypes.func,
 }
 

@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import {
   faHouse,
   faSquarePollVertical,
+  faRankingStar,
+  faKey,
 } from "@fortawesome/free-solid-svg-icons";
 
 function DefaultLayout({ children }) {
@@ -21,11 +23,21 @@ function DefaultLayout({ children }) {
             icon: faSquarePollVertical,
             path: "/result",
           },
+          {
+            title: "Bảng xếp hạng",
+            icon: faRankingStar,
+            path: "/ranking",
+          },
+          {
+            title: "Đổi mật khẩu",
+            icon: faKey,
+            path: "/change-password",
+          }
         ]}
       />
       <div className="flex-1 flex flex-col">
         <Header />
-        <div className="content flex-1">{children}</div>
+        <div className="content flex-1 m-5">{children}</div>
       </div>
     </div>
   );

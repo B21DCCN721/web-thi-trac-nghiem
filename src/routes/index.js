@@ -17,6 +17,7 @@ import LibraryAdmin from "../pages/admin/LibraryAdmin";
 import CreateTest from "../pages/admin/CreateTest";
 import EditTest from "../pages/admin/EditTest";
 import Statistical from "../pages/admin/Statistical";
+import DetailTestAdmin from "../pages/admin/DetailTestAdmin";
 
 const publicRoutes = [
   {
@@ -34,23 +35,6 @@ const publicRoutes = [
   {
     path: "/admin",
     component: LoginAdmin,
-  },
-  // role admin
-  {
-    path: "/admin/library",
-    component: LibraryAdmin
-  },
-  {
-    path: "/admin/create-test",
-    component: CreateTest
-  },
-  {
-    path: "/admin/library/edit-test/:id",
-    component: EditTest
-  },
-  {
-    path: "/admin/statistical",
-    component: Statistical
   },
 ];
 
@@ -87,6 +71,27 @@ const privateRoutes = [
     path: "/change-password",
     component: ChangePassword
   },
+  // role admin
+  {
+    path: "/admin/library",
+    component: LibraryAdmin
+  },
+  {
+    path: "/admin/create-test",
+    component: CreateTest
+  },
+  {
+    path: "/admin/library/edit-test/:id",
+    component: EditTest
+  },
+  {
+    path: "/admin/statistical",
+    component: Statistical
+  },
+  {
+    path: "/admin/library/detail-test/:id",
+    component: DetailTestAdmin
+  }
 ];
 
 export { publicRoutes, privateRoutes };

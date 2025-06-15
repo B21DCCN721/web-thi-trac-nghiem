@@ -37,6 +37,17 @@ function LibraryAdmin() {
   const [idTest, setIdTest] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
   const navigate = useNavigate();
+  const handleClickEdit = (id) => {
+    // Navigate to edit page with the test ID
+    // Assuming you have a route set up for editing tests
+    navigate(`/admin/library/edit-test/${id}`);
+    console.log(`Edit test with ID: ${id}`);
+  }
+  const handleClickDetail = (id) => {
+    // Navigate to detail page with the test ID
+    navigate(`/admin/library/detail-test/${id}`);
+    console.log(`View details for test with ID: ${id}`);
+  };
   const handleClickDelete = (id) => {
     setIdTest(id);
     setShowDialog(true);
@@ -45,12 +56,6 @@ function LibraryAdmin() {
     setShowDialog(false);
   };
   const handleClose = () => setShowDialog(false);
-  const handleClickEdit = (id) => {
-    // Navigate to edit page with the test ID
-    // Assuming you have a route set up for editing tests
-    navigate(`/admin/library/edit-test/${id}`);
-    console.log(`Edit test with ID: ${id}`);
-  }
   return (
     <AdminLayout>
       <div className="border rounded-t-lg shadow-lg">
@@ -59,7 +64,6 @@ function LibraryAdmin() {
         </h1>
         <div className="flex mt-3 items-center">
           <Search />
-          <Button onClick={() => {navigate("/admin/create-test")}}>Tạo mới</Button>
         </div>
         <div className="mx-5 my-5">
           <table className="w-full table-auto text-center border rounded-lg divide-y divide-solid shadow-md">
@@ -68,6 +72,7 @@ function LibraryAdmin() {
                 <th className="py-2">Tên bài thi</th>
                 <th className="py-2">Thời gian tạo</th>
                 <th className="py-2">Số câu</th>
+                <th className="py-2">Chi tiết</th>
                 <th className="py-2">Chỉnh sửa</th>
                 <th className="py-2">Xóa</th>
               </tr>
@@ -81,6 +86,9 @@ function LibraryAdmin() {
                   <td className="py-3">{item.title}</td>
                   <td className="py-3">{formatDate(item.created_at)}</td>
                   <td className="py-3">{item.quantity}</td>
+                  <td>
+                    <Button onClick={() => handleClickDetail(item.id)}>Chi tiết</Button>
+                  </td>
                   <td>
                     <Button onClick={() => handleClickEdit(item.id)}>Chỉnh sửa</Button>
                   </td>

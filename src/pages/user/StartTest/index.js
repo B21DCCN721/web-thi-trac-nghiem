@@ -74,7 +74,7 @@ function StartTest() {
   };
   // call app để lấy dữ liệu bài thi
   useEffect(() => {
-    const getInfoTest = async () => {
+    const getDetailTest = async () => {
       try {
         const response = await axiosClient.get(`api/test/get-detail-test/${id}`);
         if (response.status === 200 && response.data.code === 1) {
@@ -91,7 +91,7 @@ function StartTest() {
         setLoading(false);
       }
     };
-    getInfoTest();
+    getDetailTest();
   },[])
   if (loading) {
     return (

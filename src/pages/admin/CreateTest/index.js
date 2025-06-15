@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import AdminLayout from "../../../layouts/AdminLayout";
+import axiosClient from "../../../configs/axiosClient";
 
 export default function CreateTest() {
+  const initialQuestion = {
+    question: "",
+    options: ["", "", "", ""],
+    correctAnswer: null, // index (0-3)
+  };
+
   const [title, setTitle] = useState("");
+  const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
-  const [questions, setQuestions] = useState([
-    {
-      question: "",
-      options: ["", "", "", ""],
-      correctAnswer: null, // index (0-3)
-    },
-  ]);
+  const [questions, setQuestions] = useState([initialQuestion]);
 
   const handleQuestionChange = (index, value) => {
     const newQuestions = [...questions];
@@ -31,10 +33,7 @@ export default function CreateTest() {
   };
 
   const addQuestion = () => {
-    setQuestions([
-      ...questions,
-      { question: "", options: ["", "", "", ""], correctAnswer: null },
-    ]);
+    setQuestions([...questions, initialQuestion]);
   };
 
   const removeQuestion = (index) => {
@@ -43,24 +42,54 @@ export default function CreateTest() {
     setQuestions(newQuestions);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const payload = {
       title,
       description,
+      subject,
       questions,
     };
+    if (!title || !subject || !description) {
+      alert("Vui lòng điền đầy đủ thông tin bài thi");
+      return;
+    }
+    const isValid = questions.every((q) => {
+      return (
+        q.question.trim() !== "" &&
+        q.options.every((opt) => opt.trim() !== "") &&
+        q.correctAnswer !== null
+      );
+    });
 
-    console.log("Data gửi lên server:", payload);
-    alert("Dữ liệu bài thi đã được log ở console (gửi lên server).");
+    if (!isValid) {
+      alert(
+        "Vui lòng điền đầy đủ nội dung câu hỏi, các đáp án và chọn đáp án đúng."
+      );
+      return;
+    }
 
-    // Bạn có thể thay bằng gọi API như:
-    // fetch("/api/quiz", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(payload),
-    // });
+    try {
+      const response = await axiosClient.post("/api/admin/create-test", payload);
+      if (response.status === 201 && response.data.code === 1) {
+        alert("Tạo bài thi thành công!");
+        // Reset form
+        setTitle("");
+        setSubject("");
+        setDescription("");
+        setQuestions([
+          initialQuestion,
+        ]);
+      } else {
+        alert("Tạo bài thi không thành công. Vui lòng thử lại.");
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error("Lỗi khi tạo bài thi:", error.response);
+        alert("Đã xảy ra lỗi khi tạo bài thi. Vui lòng kiểm tra lại.");
+      }
+    }
   };
 
   return (
@@ -80,7 +109,16 @@ export default function CreateTest() {
               required
             />
           </div>
-
+          <div>
+            <label className="block font-medium">Môn học</label>
+            <input
+              type="text"
+              className="w-full border p-2 rounded mt-1"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              required
+            />
+          </div>
           <div>
             <label className="block font-medium">Mô tả</label>
             <textarea
@@ -165,7 +203,7 @@ export default function CreateTest() {
             type="submit"
             className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition block mx-auto"
           >
-            Gửi bài thi
+            Tạo bài thi
           </button>
         </form>
       </div>

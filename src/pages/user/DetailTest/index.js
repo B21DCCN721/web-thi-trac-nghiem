@@ -116,7 +116,7 @@ function DetailTest() {
           sx="m-0"
           onClick={handleCommentSubmit}
         >
-          Gửi bình luận
+          Gửi
         </Button>
       </div>
 

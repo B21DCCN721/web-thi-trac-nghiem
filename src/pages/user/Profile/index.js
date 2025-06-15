@@ -10,6 +10,7 @@ function Profile() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState(avatarDefault);
+  const [rank, setRank] = useState(0);
   const fileInputRef = useRef(null);
   const [checkEdit, setCheckEdit] = useState(false);
 
@@ -69,6 +70,7 @@ function Profile() {
           setName(user.name);
           setEmail(user.email);
           setAvatar(user.avatar || avatarDefault);
+          setRank(user.rank); // Giả sử rank là một số nguyên
         } else {
           console.error(
             "Lấy thông tin người dùng thất bại:",
@@ -108,7 +110,8 @@ function Profile() {
         </div>
       </div>
 
-      <div className="flex justify-end mx-20">
+      <div className="flex justify-between items-center mx-20">
+        <p className="font-bold">Xếp hạng của bạn: <span className="text-xl">{rank}</span></p>
         <Button sx="mt-5" onClick={handleClickEditInfo}>
           Chỉnh sửa thông tin
         </Button>

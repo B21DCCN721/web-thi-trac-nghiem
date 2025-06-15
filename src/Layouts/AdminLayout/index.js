@@ -9,7 +9,7 @@ import {
 
 function AdminLayout({ children }) {
   return (
-    <div className="container mx-0 min-h-screen flex">
+    <div className="mx-0 min-h-screen flex">
       <Sidebar
         tabs={[
           {

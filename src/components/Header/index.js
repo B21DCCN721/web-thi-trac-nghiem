@@ -18,7 +18,7 @@ function Header() {
     navigate("/");
   };
   return (
-    <div className="h-16 border-b border-slate-300 flex items-center justify-between">
+    <div className="h-16 w-full border-b border-slate-300 flex items-center justify-between">
       <FontAwesomeIcon icon={faList} className="text-lg ml-5" />
 
       <div className="mr-8 flex items-center min-w-[150px] relative group">

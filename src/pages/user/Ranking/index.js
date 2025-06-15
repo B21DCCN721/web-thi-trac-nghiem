@@ -1,4 +1,7 @@
 import DefaultLayout from "../../../layouts/DefaultLayout";
+import { useEffect, useState } from "react";
+import axiosClient from "../../../configs/axiosClient";
+import Loading from "../../../components/Loading";
 const students = [
   { id: 1, name: "Nguyễn Văn A", score: 98 },
   { id: 2, name: "Trần Thị B", score: 92 },
@@ -7,15 +10,50 @@ const students = [
   { id: 5, name: "Hoàng Văn E", score: 82 },
 ];
 function Ranking() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // call api lấy danh sách thứ hạng học sinh
+  useEffect(() => {
+    const getRanking = async () => {
+      try {
+        const response = await axiosClient.get("api/student/get-ranking");
+        if (response.status === 200 && response.data.code === 1) {
+          setData(response.data?.data);
+        }
+      } catch (error) {
+        if (error.response) {
+          console.error("Lỗi khi lấy danh sách xếp hạng:", error.response.data);
+          setError(error.response.data.message || "Không thể tải danh sách xếp hạng.");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    getRanking();
+  }, []);
+  if (loading) {
+    return (
+      <DefaultLayout>
+        <Loading />
+      </DefaultLayout>
+    );
+  }
+  if (error) {
+    return (
+      <DefaultLayout>
+        <div className="text-red-500 text-center mt-10">{error}</div>
+      </DefaultLayout>
+    );
+  }
   return (
     <DefaultLayout>
-      <h1 className="text-2xl text-gray-500 font-bold">Bảng xếp hạng</h1>
-      <div className="">
+      <h1 className="text-2xl text-gray-500 font-bold">Bảng xếp hạng top 10 người có điểm cao nhất</h1>
+      <div className="mt-5">
         <div>
-          <h2 className="text-xl font-bold mb-3">Top 10 sinh viên</h2>
           <div className="bg-white shadow-md rounded-lg overflow-hidden">
             <table className="min-w-full">
-              <thead className="bg-gray-100">
+              <thead>
                 <tr>
                   <th className="text-left px-6 py-3 font-medium text-gray-700">
                     Hạng
@@ -29,19 +67,17 @@ function Ranking() {
                 </tr>
               </thead>
               <tbody>
-                {students
-                  .sort((a, b) => b.score - a.score)
-                  .map((student, index) => (
+                {data.map((student, index) => (
                     <tr
-                      key={student.id}
+                      key={student.user_id}
                       className={`border-t ${
-                        index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                        index % 2 === 0 ? "bg-gray-200" : ""
                       }`}
                     >
                       <td className="px-6 py-4 font-semibold text-gray-800">
                         {index + 1}
                       </td>
-                      <td className="px-6 py-4">{student.name}</td>
+                      <td className="px-6 py-4">{student.User.name}</td>
                       <td className="px-6 py-4 text-blue-600 font-semibold">
                         {student.score}
                       </td>

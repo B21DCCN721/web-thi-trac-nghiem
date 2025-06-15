@@ -10,34 +10,25 @@ import {
 
 function DefaultLayout({ children }) {
   return (
-    <div className="container mx-0 min-h-screen flex">
+    <div className="flex h-screen">
+      {/* Sidebar cố định */}
       <Sidebar
         tabs={[
-          {
-            title: "Danh sách bài thi",
-            icon: faHouse,
-            path: "/home",
-          },
-          {
-            title: "Kết quả",
-            icon: faSquarePollVertical,
-            path: "/result",
-          },
-          {
-            title: "Bảng xếp hạng",
-            icon: faRankingStar,
-            path: "/ranking",
-          },
-          {
-            title: "Đổi mật khẩu",
-            icon: faKey,
-            path: "/change-password",
-          }
+          { title: "Danh sách bài thi", icon: faHouse, path: "/home" },
+          { title: "Kết quả", icon: faSquarePollVertical, path: "/result" },
+          { title: "Bảng xếp hạng", icon: faRankingStar, path: "/ranking" },
+          { title: "Đổi mật khẩu", icon: faKey, path: "/change-password" },
         ]}
       />
-      <div className="flex-1 flex flex-col">
+      
+      {/* Main content: header + content */}
+      <div className="flex flex-col flex-1 overflow-hidden">
         <Header />
-        <div className="content flex-1 m-5">{children}</div>
+        
+        {/* Phần content cuộn */}
+        <div className="flex-1 overflow-y-auto p-5">
+          {children}
+        </div>
       </div>
     </div>
   );

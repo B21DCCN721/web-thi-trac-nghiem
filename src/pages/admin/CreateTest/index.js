@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import AdminLayout from "../../../layouts/AdminLayout";
 import axiosClient from "../../../configs/axiosClient";
+import isValidQuestion from "../../../helpers/isValidQuestion";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateTest() {
   const initialQuestion = {
@@ -8,7 +10,7 @@ export default function CreateTest() {
     options: ["", "", "", ""],
     correctAnswer: null, // index (0-3)
   };
-
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
@@ -55,15 +57,15 @@ export default function CreateTest() {
       alert("Vui lòng điền đầy đủ thông tin bài thi");
       return;
     }
-    const isValid = questions.every((q) => {
-      return (
-        q.question.trim() !== "" &&
-        q.options.every((opt) => opt.trim() !== "") &&
-        q.correctAnswer !== null
-      );
-    });
+    // const isValid = questions.every((q) => {
+    //   return (
+    //     q.question.trim() !== "" &&
+    //     q.options.every((opt) => opt.trim() !== "") &&
+    //     q.correctAnswer !== null
+    //   );
+    // });
 
-    if (!isValid) {
+    if (!isValidQuestion(questions)) {
       alert(
         "Vui lòng điền đầy đủ nội dung câu hỏi, các đáp án và chọn đáp án đúng."
       );
@@ -81,6 +83,7 @@ export default function CreateTest() {
         setQuestions([
           initialQuestion,
         ]);
+        navigate("/admin/library")
       } else {
         alert("Tạo bài thi không thành công. Vui lòng thử lại.");
       }

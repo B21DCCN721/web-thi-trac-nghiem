@@ -92,7 +92,7 @@ function StartTest() {
       }
     };
     getDetailTest();
-  },[])
+  },[id])
   if (loading) {
     return (
       <div className="container mx-auto min-h-screen flex justify-center items-center">

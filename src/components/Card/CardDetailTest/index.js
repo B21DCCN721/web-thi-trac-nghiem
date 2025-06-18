@@ -16,7 +16,7 @@ function CardDetailTest({info}) {
         navigate(`/test/${info.id}`)
     }
     return ( 
-        <div className="mx-5 mt-5 rounded-md shadow-lg *:m-5">
+        <div className="rounded-md shadow-lg *:m-5">
             <h1 className="font-bold text-xl">{info.title}</h1>
             <p><span className="mr-3"><FontAwesomeIcon icon={faUser} /></span>Môn học: {info.subject}</p>
             <p><span className="mr-3"><FontAwesomeIcon icon={faUser} /></span>Mã bài thi: {info.code}</p>

@@ -2,13 +2,6 @@ import DefaultLayout from "../../../layouts/DefaultLayout";
 import { useEffect, useState } from "react";
 import axiosClient from "../../../configs/axiosClient";
 import Loading from "../../../components/Loading";
-const students = [
-  { id: 1, name: "Nguyễn Văn A", score: 98 },
-  { id: 2, name: "Trần Thị B", score: 92 },
-  { id: 3, name: "Lê Văn C", score: 89 },
-  { id: 4, name: "Phạm Thị D", score: 85 },
-  { id: 5, name: "Hoàng Văn E", score: 82 },
-];
 function Ranking() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -48,7 +41,7 @@ function Ranking() {
   }
   return (
     <DefaultLayout>
-      <h1 className="text-2xl text-gray-500 font-bold">Bảng xếp hạng top 10 người có điểm cao nhất</h1>
+      <h1 className="text-2xl font-bold">Bảng xếp hạng top 10 người có điểm cao nhất</h1>
       <div className="mt-5">
         <div>
           <div className="bg-white shadow-md rounded-lg overflow-hidden">

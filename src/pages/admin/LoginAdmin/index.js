@@ -10,7 +10,7 @@ function LoginAdmin() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleLogin = async(e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axiosClient.post("api/auth/login", {
@@ -20,13 +20,13 @@ function LoginAdmin() {
       if (response.status === 200 && response.data.code === 1) {
         const token = response.data.token;
         const role = response.data.user.role;
-        dispatch(loginSuccess({token, role}))
+        dispatch(loginSuccess({ token, role }));
         navigate("/admin/statistical");
       } else {
         alert(response.data.message || "Đăng nhập không thành công.");
       }
     } catch (error) {
-      if(error.response) {
+      if (error.response) {
         console.log("Đăng nhập thất bại:", error.response);
       }
       console.error("Đăng nhập thất bại:", error);
@@ -61,7 +61,7 @@ function LoginAdmin() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button sx="mx-0 mt-5" type="submit" disabled={email === "" || password === ""}>
+          <Button sx="mx-0 mt-5" type="submit">
             Đăng nhập
           </Button>
         </form>

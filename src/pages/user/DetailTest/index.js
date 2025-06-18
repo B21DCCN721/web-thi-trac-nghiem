@@ -105,7 +105,7 @@ function DetailTest() {
   return (
     <DefaultLayout>
       <CardDetailTest info={data} />
-      <div className="mx-5 my-5 bg-white p-5 rounded-lg shadow-md">
+      <div className="my-5 bg-white p-5 rounded-lg shadow-md">
         <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
@@ -113,22 +113,25 @@ function DetailTest() {
           className="w-full p-3 border rounded-md text-sm"
         />
         <Button
-          sx="m-0"
           onClick={handleCommentSubmit}
         >
           Gửi
         </Button>
       </div>
 
-      <div className="mx-5 my-5 bg-white p-5 rounded-lg shadow-md">
+      <div className="my-5 bg-white p-5 rounded-lg shadow-md">
         <h2 className="text-xl font-bold mb-3">Bình luận</h2>
-        {comments.map((comment) => (
-          <Comment
-            key={comment.id}
-            comment={comment}
-            onReplySubmit={handleReplySubmit}
-          />
-        ))}
+        {comments.length === 0 ? (
+          <p>Chưa có bình luận nào</p>
+        ) : (
+          comments.map((comment) => (
+            <Comment
+              key={comment.id}
+              comment={comment}
+              onReplySubmit={handleReplySubmit}
+            />
+          ))
+        )}
       </div>
     </DefaultLayout>
   );

@@ -112,7 +112,7 @@ function Profile() {
 
       <div className="flex justify-between items-center mx-20">
         <p className="font-bold">Xếp hạng của bạn: <span className="text-xl">{rank}</span></p>
-        <Button sx="mt-5" onClick={handleClickEditInfo}>
+        <Button sx="my-5" onClick={handleClickEditInfo}>
           Chỉnh sửa thông tin
         </Button>
       </div>

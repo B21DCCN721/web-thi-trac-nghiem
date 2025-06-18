@@ -62,7 +62,7 @@ function Result() {
   }
   return (
     <DefaultLayout>
-      <h1 className="text-2xl text-gray-500 font-bold">
+      <h1 className="text-2xl  font-bold">
         Danh sách bài thi đã làm
       </h1>
       <div className="mt-5">
@@ -96,7 +96,7 @@ function Result() {
                   </td>
     
                   <td>
-                    <Button onClick={() => handleClickDetail(item.id)}>
+                    <Button sx="my-3" onClick={() => handleClickDetail(item.id)}>
                       Xem chi tiết
                     </Button>
                   </td>

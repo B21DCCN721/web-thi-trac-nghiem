@@ -7,30 +7,32 @@ import {
   faRankingStar,
   faKey,
 } from "@fortawesome/free-solid-svg-icons";
+import Footer from "../../components/Footer";
 
 function DefaultLayout({ children }) {
   return (
-    <div className="flex h-screen">
-      {/* Sidebar cố định */}
-      <Sidebar
-        tabs={[
-          { title: "Danh sách bài thi", icon: faHouse, path: "/home" },
-          { title: "Kết quả", icon: faSquarePollVertical, path: "/result" },
-          { title: "Bảng xếp hạng", icon: faRankingStar, path: "/ranking" },
-          { title: "Đổi mật khẩu", icon: faKey, path: "/change-password" },
-        ]}
-      />
-      
-      {/* Main content: header + content */}
-      <div className="flex flex-col flex-1 overflow-hidden">
-        <Header />
+   <div>
+      <div className="flex h-screen">
+        {/* Sidebar cố định */}
+        <Sidebar
+          tabs={[
+            { title: "Danh sách bài thi", icon: faHouse, path: "/home" },
+            { title: "Kết quả", icon: faSquarePollVertical, path: "/result" },
+            { title: "Bảng xếp hạng", icon: faRankingStar, path: "/ranking" },
+            { title: "Đổi mật khẩu", icon: faKey, path: "/change-password" },
+          ]}
+        />
         
-        {/* Phần content cuộn */}
-        <div className="flex-1 overflow-y-auto p-5">
-          {children}
+        {/* Main content: header + content */}
+        <div className="flex flex-col flex-1 overflow-hidden">
+          <Header />         
+          {/* Phần content cuộn */}
+          <div className="flex-1 overflow-y-auto p-5">
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+   </div>
   );
 }
 

@@ -48,12 +48,12 @@ function ChangePassword() {
     <DefaultLayout>
       <div className="flex justify-center mt-10 mx-20">
         <div className="w-full max-w-md">
-          <h1 className="text-2xl text-gray-500 font-bold mb-5 text-center">
+          <h1 className="text-2xl  font-bold mb-5 text-center">
             Đổi mật khẩu
           </h1>
           <form className="flex flex-col" onSubmit={handleChangePassword}>
             <label htmlFor="current-password">
-              <span className="mb-2 text-gray-500">Mật khẩu hiện tại:</span>
+              <span className="mb-2 ">Mật khẩu hiện tại:</span>
             </label>
             <div className="relative">
               <input
@@ -68,12 +68,12 @@ function ChangePassword() {
               />
               <FontAwesomeIcon
                 icon={showCurrentPassword ? faEye : faEyeSlash}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2  cursor-pointer"
                 onClick={() => setShowCurrentPassword(!showCurrentPassword)}
               />
             </div>
             <label htmlFor="new-password">
-              <span className="mb-2 text-gray-500">Nhập mật khẩu mới:</span>
+              <span className="mb-2 ">Nhập mật khẩu mới:</span>
             </label>
             <div className="relative">
               <input
@@ -88,12 +88,12 @@ function ChangePassword() {
               />
               <FontAwesomeIcon
                 icon={showNewPassword ? faEye : faEyeSlash}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2  cursor-pointer"
                 onClick={() => setShowNewPassword(!showNewPassword)}
               />
             </div>
             <label htmlFor="confirm-new-password">
-              <span className="mb-2 text-gray-500">Xác nhận mật khẩu mới:</span>
+              <span className="mb-2 ">Xác nhận mật khẩu mới:</span>
             </label>
             <div className="relative">
               <input
@@ -108,7 +108,7 @@ function ChangePassword() {
               />
               <FontAwesomeIcon
                 icon={showConfirmNewPassword ? faEye : faEyeSlash}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2  cursor-pointer"
                 onClick={() =>
                   setShowConfirmNewPassword(!showConfirmNewPassword)
                 }

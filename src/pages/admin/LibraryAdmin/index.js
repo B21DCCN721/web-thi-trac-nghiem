@@ -106,17 +106,17 @@ function LibraryAdmin() {
                   <td className="py-3">{item.title}</td>
                   <td className="py-3">{item.subject}</td>
                   <td className="py-3">{item.code}</td>
-                  <td>
+                  <td className="py-3">
                     <Button onClick={() => handleClickDetail(item.id)}>
                       Chi tiết
                     </Button>
                   </td>
-                  <td>
+                  <td className="py-3">
                     <Button onClick={() => handleClickEdit(item.id)}>
                       Chỉnh sửa
                     </Button>
                   </td>
-                  <td>
+                  <td className="py-3">
                     <Button onClick={() => handleClickDelete(item.id)}>
                       Xóa
                     </Button>

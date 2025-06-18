@@ -51,7 +51,6 @@ function Home() {
     };
     getListTest();
   }, [currentPage, search]);
-  console.log("data", data);
   
   if (loading) {
     return <DefaultLayout>
@@ -70,7 +69,7 @@ function Home() {
   return (
     <DefaultLayout>
       <div className="search-home flex items-center">
-        <h1 className="text-2xl text-gray-500 font-bold">Danh sách bài thi</h1>
+        <h1 className="text-2xl  font-bold">Danh sách bài thi</h1>
         <div className="mx-auto">
           <Search
             valueSearch={search}

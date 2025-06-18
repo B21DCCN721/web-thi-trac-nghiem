@@ -8,7 +8,7 @@ function Dialog({ header, text, handleClose, handleConfim }) {
         <h1 className="font-bold text-lg mt-5">{header}</h1>
         <p className="text-[18px]">{text}</p>
         <div>
-          <Button onClick={handleClose}>Đóng</Button>
+          <Button sx="mr-3" onClick={handleClose}>Đóng</Button>
           <Button onClick={handleConfim}>Xác nhận</Button>
         </div>
       </div>

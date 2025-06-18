@@ -1,4 +1,6 @@
 import Sidebar from "../../components/Sidebar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import {
   faPlus,
@@ -36,9 +38,11 @@ function AdminLayout({ children }) {
         ]}
       />
       <div className="flex flex-col flex-1 overflow-hidden">
-        <div className="h-16 w-full border-b border-slate-300 flex items-center px-5">
-          <button className="ml-auto mr-5 font-bold" onClick={handleLogout}>Logout</button>
-          {/* Có thể thêm các nút hoặc thông tin khác ở đây */}
+        <div className="h-16 w-full border-b border-slate-300 flex items-center justify-end px-5">
+          <button className="mr-5 font-bold" onClick={handleLogout}>
+            Logout
+            <FontAwesomeIcon icon={faArrowRightFromBracket} className="mx-2" />
+          </button>
         </div>
         {/* Phần content cuộn */}
         <div className="flex-1 overflow-y-auto p-5">{children}</div>

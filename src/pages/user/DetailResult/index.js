@@ -3,7 +3,6 @@ import Button from "../../../components/Button";
 import DefaultLayout from "../../../layouts/DefaultLayout";
 import axiosClient from "../../../configs/axiosClient";
 import { useEffect, useState } from "react";
-import formatDate from "../../../helpers/fomatDate";
 
 import Loading from "../../../components/Loading";
 
@@ -119,10 +118,10 @@ function DetailResult() {
         </table>
       </div>
       <div className="flex items-center ml-5">
-        <h2 className="font-bold text-xl text-gray-600">
+        <h2 className="font-bold text-xl">
           Chi tiết các câu hỏi
         </h2>
-        <Button onClick={handleClickRedoTest}>Làm lại</Button>
+        <Button sx="ml-3" onClick={handleClickRedoTest}>Làm lại</Button>
       </div>
       <div className="mx-5 mt-5">
         {data?.submission.Test.Questions.map((question, index) => {

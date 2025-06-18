@@ -45,7 +45,7 @@ const options = {
     },
     title: {
       display: true,
-      text: "Biểu đồ số lượng bài thi được tạo theo tháng",
+      text: "Biểu đồ số lượng bài thi được tạo trong 10 ngày gần nhất",
     },
   },
 };

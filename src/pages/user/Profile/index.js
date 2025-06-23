@@ -2,9 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import DefaultLayout from "../../../layouts/DefaultLayout";
 import Button from "../../../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCamera,
+  faArrowRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 import avatarDefault from "../../../assets/imgs/avatar.png";
 import axiosClient from "../../../configs/axiosClient";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [name, setName] = useState("");
@@ -13,6 +17,7 @@ function Profile() {
   const [rank, setRank] = useState(0);
   const fileInputRef = useRef(null);
   const [checkEdit, setCheckEdit] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickEditInfo = () => {
     setCheckEdit(true);
@@ -83,7 +88,17 @@ function Profile() {
     };
     getUserInfo();
   }, []);
-
+  // Hàm xử lý đăng xuất
+  const handleLogout = async () => {
+    try {
+      await axiosClient.post("api/auth/logout");
+      localStorage.clear();
+      sessionStorage.clear();
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.error("Đăng xuất thất bại:", error);
+    }
+  };
   return (
     <DefaultLayout>
       <div className="flex justify-center mt-10 mx-20">
@@ -111,35 +126,41 @@ function Profile() {
       </div>
 
       <div className="flex justify-between items-center mx-20">
-        <p className="font-bold">Xếp hạng của bạn: <span className="text-xl">{rank}</span></p>
         <Button sx="my-5" onClick={handleClickEditInfo}>
           Chỉnh sửa thông tin
         </Button>
+        <button
+          className="flex justify-start items-center px-4 py-2 hover:bg-slate-100"
+          onClick={handleLogout}
+        >
+          <FontAwesomeIcon icon={faArrowRightFromBracket} className="mr-2" />
+          Logout
+        </button>
       </div>
       <form onSubmit={handleConfimEdit}>
-        <div className="grid grid-cols-2 border-t text-gray-500 mx-20">
-          <div className="flex flex-col mx-5 *:my-2">
-            <label htmlFor="name">Họ tên:</label>
-            <input
-              className="bg-gray-300 outline-none p-2 rounded"
-              id="name"
-              value={name}
-              type="text"
-              readOnly={!checkEdit}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col mx-5 *:my-2">
-            <label htmlFor="email">Email:</label>
-            <input
-              className="bg-gray-300 outline-none p-2 rounded"
-              id="email"
-              value={email}
-              type="email"
-              readOnly={!checkEdit}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+        <div className="border-t mx-20 *:block *:my-3">
+          <p className="font-bold">
+            Xếp hạng của bạn: <span className="text-xl">{rank}</span>
+          </p>
+          <label htmlFor="name">Họ tên:</label>
+          <input
+            className="bg-gray-300 outline-none p-2 rounded w-1/2"
+            id="name"
+            value={name}
+            type="text"
+            readOnly={!checkEdit}
+            onChange={(e) => setName(e.target.value)}
+          />
+
+          <label htmlFor="email">Email:</label>
+          <input
+            className="bg-gray-300 outline-none p-2 rounded w-1/2"
+            id="email"
+            value={email}
+            type="email"
+            readOnly={!checkEdit}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         {checkEdit && (
           <div className="flex justify-center mt-10">

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import DefaultLayout from "../../../layouts/DefaultLayout";
 import Pagination from "../../../components/Pagination";
 import Button from "../../../components/Button";
@@ -6,13 +6,15 @@ import {useState, useEffect } from "react";
 import formatDate from "../../../helpers/fomatDate";
 import axiosClient from "../../../configs/axiosClient";
 import Loading from "../../../components/Loading";
+import buildParams from "../../../helpers/buildParams";
 
 function Result() {
   useEffect(() => {
     document.title = "Result";
   }, []);
   const [limit] = useState(5);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams,setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(searchParams.get("page") || 1);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -107,7 +109,9 @@ function Result() {
           <Pagination
             totalItems={data.pagination.total}
             itemsPerPage={limit}
-            onPageChange={(page) => setCurrentPage(page)}
+            onPageChange={(page) => {setCurrentPage(page)
+            setSearchParams(buildParams("", page))
+            }}
           />
       </div>
     </DefaultLayout>

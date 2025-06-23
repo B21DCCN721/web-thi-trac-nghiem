@@ -1,15 +1,12 @@
 import { useState } from "react";
 import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../../store/slices/authSlice";
 import axiosClient from "../../../configs/axiosClient";
 
 function LoginAdmin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -18,10 +15,9 @@ function LoginAdmin() {
         password,
       });
       if (response.status === 200 && response.data.code === 1) {
-        const token = response.data.token;
-        const role = response.data.user.role;
-        dispatch(loginSuccess({ token, role }));
-        navigate("/admin/statistical");
+        sessionStorage.setItem("isAuthenticated", true);
+        sessionStorage.setItem("role", response.data.user.role);
+        navigate("/admin/statistical", { replace: true});
       } else {
         alert(response.data.message || "Đăng nhập không thành công.");
       }

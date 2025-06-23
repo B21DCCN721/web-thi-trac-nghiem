@@ -1,19 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axiosClient from "../../../configs/axiosClient";
-import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../../store/slices/authSlice";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   // Hàm xử lý đăng nhập
   const handleLogin = async(e) => {
     e.preventDefault();
@@ -23,10 +21,15 @@ function Login() {
         password,
       });
       if (response.status === 200 && response.data.code === 1) {
-        const token = response.data.token;
-        const role = response.data.user.role;
-        dispatch(loginSuccess({token, role}))
-        navigate("/home");
+        localStorage.setItem("rememberMe", rememberMe);
+        if(rememberMe){
+          localStorage.setItem("isAuthenticated", true);
+          localStorage.setItem("role", response.data.user.role);
+        } else {
+          sessionStorage.setItem("isAuthenticated", true);
+          sessionStorage.setItem("role", response.data.user.role);
+        }
+        navigate("/home", { replace: true });
       } else {
         alert(response.data.message || "Đăng nhập không thành công.");
       }
@@ -38,6 +41,15 @@ function Login() {
       alert("Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin đăng nhập.");
     }
   };
+  // Nếu đã đăng nhập thì chuyển hướng về trang home
+  useEffect(() => {
+    const isAuthenticated =
+      localStorage.getItem("isAuthenticated") === "true" ||
+      sessionStorage.getItem("isAuthenticated") === "true";
+    if (isAuthenticated) {
+      navigate("/home", { replace: true });
+    }
+  }, [navigate]);
 
   return (
     <div className="container mx-0 min-h-screen flex justify-center items-center">
@@ -73,17 +85,19 @@ function Login() {
           </div>
 
           <div className="text-gray-500 flex justify-between mt-3">
-            <label>
+            <div>
               <input
                 className="border-8 border-red-500 cursor-pointer"
                 type="checkbox"
                 name="memo-password"
                 id="memo-password"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
               />
               <label className="cursor-pointer" htmlFor="memo-password">
                 Ghi nhớ
               </label>
-            </label>
+            </div>
             <Link className="underline" to={"/forgot-password"}>
               Quên mật khẩu
             </Link>

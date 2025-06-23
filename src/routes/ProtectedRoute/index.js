@@ -1,13 +1,19 @@
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Navigate, useLocation } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-  // Kiểm tra trạng thái đăng nhập (ví dụ từ localStorage hoặc Redux store)
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated =
+    localStorage.getItem("isAuthenticated") === "true" ||
+    sessionStorage.getItem("isAuthenticated") === "true";
+  const role = localStorage.getItem("role") || sessionStorage.getItem("role");
+  const location = useLocation();
 
   if (!isAuthenticated) {
-    // Chuyển hướng về trang login nếu chưa đăng nhập
     return <Navigate to="/" replace />;
+  }
+
+  // Không cho student vào route admin
+  if (role === "student" && location.pathname.startsWith("/admin")) {
+    return <Navigate to="/home" replace />;
   }
 
   return children;

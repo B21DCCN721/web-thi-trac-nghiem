@@ -1,6 +1,4 @@
 import "./App.css";
-import { Provider } from "react-redux";
-import store from "./store/store.js";
 import {
   BrowserRouter as Router,
   Routes,
@@ -12,37 +10,35 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route path="*" element={<Navigate to="/" replace />} />
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="*" element={<Navigate to="/" replace />} />
 
-            {/* Public routes (không cần đăng nhập) */}
-            {publicRoutes.map((route, index) => {
-              const Page = route.component;
-              return <Route key={index} path={route.path} element={<Page />} />;
-            })}
+          {/* Public routes (không cần đăng nhập) */}
+          {publicRoutes.map((route, index) => {
+            const Page = route.component;
+            return <Route key={index} path={route.path} element={<Page />} />;
+          })}
 
-            {/* Private routes (cần đăng nhập) */}
-            {privateRoutes.map((route, index) => {
-              const Page = route.component;
-              return (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={
-                    <ProtectedRoute>
-                      <Page />
-                    </ProtectedRoute>
-                  }
-                />
-              );
-            })}
-          </Routes>
-        </div>
-      </Router>
-    </Provider>
+          {/* Private routes (cần đăng nhập) */}
+          {privateRoutes.map((route, index) => {
+            const Page = route.component;
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <ProtectedRoute>
+                    <Page />
+                  </ProtectedRoute>
+                }
+              />
+            );
+          })}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

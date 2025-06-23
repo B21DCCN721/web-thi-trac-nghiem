@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 function Search({ valueSearch = "", onSearch }) {
   return (
     <div>
-      <form className="search-container">
+      <form className="search-container" onSubmit={(e) => e.preventDefault()}>
         <label htmlFor="search" className="mx-5 text-md">
           Tìm kiếm:
         </label>

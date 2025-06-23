@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams] = useState(new URLSearchParams(window.location.search));
+  const [currentPage, setCurrentPage] = useState(searchParams.get('page') ? parseInt(searchParams.get('page'), 10) : 1);
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handleClick = (page) => {

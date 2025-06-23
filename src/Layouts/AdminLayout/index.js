@@ -7,14 +7,16 @@ import {
   faSquarePollVertical,
   faBook,
 } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
-import { logout } from "../../store/slices/authSlice";
+import axiosClient from "../../configs/axiosClient";
+import { useNavigate } from "react-router-dom";
 
 function AdminLayout({ children }) {
-  const dispatch = useDispatch();
-  const handleLogout = () => {
-    dispatch(logout());
-    // Redirect to login page or perform any other logout actions
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    await axiosClient.post("api/auth/logout");
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate("/");
   };
   return (
     <div className="flex h-screen">
